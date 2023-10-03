@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Student\StudentInfoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,9 +40,7 @@ Route::get('std/profile', function () {
     return view('student.profile')->with(compact('name','gpa'));
 });
 
-Route::get('std/grades', function () {
-    return view('student.info.grades');
-});
+Route::get('std/grades', [StudentInfoController::class,'getGrades']);
 
 Route::get('std/personal', function () {
     return view('student.info.personal');
@@ -109,3 +110,11 @@ Route::get('book', function () {
         'company' => 'Salahaldin'
     ]);
 });
+
+#########################################
+
+Route::get('books2', [BookController::class, 'getAll']);
+
+Route::get('book2', [BookController::class, 'getOne']);
+
+Route::get('settings/constants', SettingsController::class);
